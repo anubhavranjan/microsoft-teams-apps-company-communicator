@@ -126,10 +126,11 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
-                   builder =>
-                   {
-                       builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
-                   });
+                    builder => builder
+                        .AllowAnyMethod()
+                        .AllowCredentials()
+                        .SetIsOriginAllowed((host) => true)
+                        .AllowAnyHeader());
             });
 
             services.AddOptions();
@@ -219,6 +220,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
             app.UseSpaStaticFiles();
 
             app.UseRouting();
+            app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseRequestLocalization();
@@ -238,7 +240,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            app.UseCors("AllowAll");
+            
         }
 
         /// <summary>
