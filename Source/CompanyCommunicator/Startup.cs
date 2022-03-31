@@ -129,7 +129,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                     builder => builder
                         .AllowAnyMethod()
                         .AllowCredentials()
-                        .SetIsOriginAllowed((host) => true)
+                        .WithOrigins("https://*.ngrok.io")
                         .AllowAnyHeader());
             });
 
@@ -240,7 +240,6 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-            
         }
 
         /// <summary>
