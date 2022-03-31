@@ -238,6 +238,7 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
+            app.UseCors("AllowAll");
         }
 
         /// <summary>
