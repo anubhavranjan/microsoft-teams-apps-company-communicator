@@ -123,6 +123,15 @@ namespace Microsoft.Teams.Apps.CompanyCommunicator
                         configuration.GetValue<string>("UserAppExternalId", "148a66bb-e83d-425a-927d-09f4299a9274");
                 });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                   builder =>
+                   {
+                       builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod();
+                   });
+            });
+
             services.AddOptions();
 
             // Add localization services.
